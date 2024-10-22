@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Header from "@/components/Header"
 import AddDocumentButton from "@/components/AddDocumentButton";
 import { SignedIn, UserButton } from "@clerk/nextjs"
