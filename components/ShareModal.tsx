@@ -35,7 +35,7 @@ export default function ShareModal({ roomId, collaborators, creatorId, currentUs
       roomId,
       email,
       userType: userType,
-      updatedBy: user
+      updatedBy: user.info
     });
 
     setLoading(false);
