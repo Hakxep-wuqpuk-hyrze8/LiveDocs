@@ -117,7 +117,9 @@ export default function CollaborativeRoom({ roomId, roomMetadata, users, current
               </SignedIn>
             </div>
           </Header>
+
           <Editor roomId={roomId} currentUserType={currentUserType} />
+
         </div>
       </ClientSideSuspense>
     </RoomProvider>

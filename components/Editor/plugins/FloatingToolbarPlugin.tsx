@@ -1,3 +1,4 @@
+import { useSelection } from '@/hooks/useSelection';
 import {
   autoUpdate,
   flip,
@@ -67,6 +68,10 @@ function Toolbar({
 }) {
   const [editor] = useLexicalComposerContext();
 
+  const [state, setState] = useState<"default" | "ai" | "closed">("default");
+
+  const { textContent } = useSelection();
+
   const padding = 20;
 
   const {
@@ -97,6 +102,10 @@ function Toolbar({
     });
   }, [setReference, range]);
 
+  if (state === "closed") {
+    return null;
+  }
+
   return createPortal(
     <div
       ref={setFloating}
@@ -108,27 +117,48 @@ function Toolbar({
         minWidth: 'max-content',
       }}
     >
-      <div className="floating-toolbar">
-        <button
-          onClick={() => {
-            const isOpen = editor.dispatchCommand(
-              OPEN_FLOATING_COMPOSER_COMMAND,
-              undefined,
-            );
-            if (isOpen) {
-              onRangeChange(null);
-            }
-          }}
-          className="floating-toolbar-btn"
-        >
-          <Image
-            src="/assets/icons/comment.svg"
-            alt="comment"
-            width={24}
-            height={24}
-          />
-        </button>
-      </div>
+      {
+        state === "ai" ? (
+          <div className="floating-toolbar">
+            <div className="flex item-center text-indigo-500 text-sm font-semibold py-4">
+              {textContent}
+            </div>
+          </div>
+        ) : null
+      }
+
+      {
+        state === "default" ? (
+          <div className="floating-toolbar">
+            <button
+              onClick={() => setState("ai")}
+            >
+              <div className="flex items-center text-indigo-500 text-sm font-semibold py-4">
+                AI
+              </div>
+            </button>
+            <button
+              onClick={() => {
+                const isOpen = editor.dispatchCommand(
+                  OPEN_FLOATING_COMPOSER_COMMAND,
+                  undefined,
+                );
+                if (isOpen) {
+                  onRangeChange(null);
+                }
+              }}
+              className="floating-toolbar-btn"
+            >
+              <Image
+                src="/assets/icons/comment.svg"
+                alt="comment"
+                width={24}
+                height={24}
+              />
+            </button>
+          </div>
+        ) : null
+      }
     </div>,
     container,
   );

@@ -5,6 +5,7 @@ import { liveblocks } from '../liveblocks';
 import { revalidatePath } from 'next/cache';
 import { getAccessType, parseStringify } from '../utils';
 import { redirect } from 'next/navigation';
+import { withLexicalDocument } from "@liveblocks/node-lexical";
 
 export const createDocument = async ({ userId, email }: CreateDocumentParams) => {
   const roomId = nanoid();
@@ -106,6 +107,16 @@ export const updateDocumentAccess = async ({roomId, email, userType, updatedBy} 
   } catch (error) {
     console.log(`Error happened when updating a document: ${error}`);
   }
+};
+
+export const translateDocument = async (roomId: string) => {
+  await withLexicalDocument(
+    {roomId, client: liveblocks},
+    async (doc) => {
+      const textContent = doc.getTextContent();
+      console.log("textContent: " + textContent);
+    }
+  );
 };
 
 export const removeCollaborator = async ({roomId, email}: {roomId: string, email:string}) => {

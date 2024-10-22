@@ -14,6 +14,7 @@
     "@lexical/react": "^0.16.1",
     "@liveblocks/client": "^2.9.1",
     "@liveblocks/node": "^2.9.1",
+    "@liveblocks/node-lexical": "^2.9.1",
     "@liveblocks/react": "^2.9.1",
     "@liveblocks/react-lexical": "^2.9.1",
     "@liveblocks/react-ui": "^2.9.1",
