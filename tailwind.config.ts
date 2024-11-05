@@ -10,53 +10,71 @@ const config = {
   ],
   prefix: '',
   theme: {
-    container: {
-      center: true,
-      padding: '2rem',
-      screens: {
-        '2xl': '1400px',
-        xs: '360px',
-      },
-    },
-    extend: {
-      colors: {
-        blue: {
-          100: '#B4C6EE',
-          400: '#417BFF',
-          500: '#3371FF',
-        },
-        red: {
-          400: '#DD4F56',
-          500: '#DC4349',
-        },
-        dark: {
-          100: '#09111F',
-          200: '#0B1527',
-          300: '#0F1C34',
-          350: '#12213B',
-          400: '#27344D',
-          500: '#2E3D5B',
-        },
-      },
-      keyframes: {
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
-        },
-      },
-      backgroundImage: {
-        doc: 'url(/assets/images/doc.png)',
-        modal: 'url(/assets/images/modal.png)',
-      },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-      },
-    },
+  	container: {
+  		center: true,
+  		padding: '2rem',
+  		screens: {
+  			'2xl': '1400px',
+  			xs: '360px'
+  		}
+  	},
+  	extend: {
+  		colors: {
+  			blue: {
+  				'100': '#B4C6EE',
+  				'400': '#417BFF',
+  				'500': '#3371FF'
+  			},
+  			red: {
+  				'400': '#DD4F56',
+  				'500': '#DC4349'
+  			},
+  			dark: {
+  				'100': '#09111F',
+  				'200': '#0B1527',
+  				'300': '#0F1C34',
+  				'350': '#12213B',
+  				'400': '#27344D',
+  				'500': '#2E3D5B'
+  			},
+  			sidebar: {
+  				DEFAULT: 'hsl(var(--sidebar-background))',
+  				foreground: 'hsl(var(--sidebar-foreground))',
+  				primary: 'hsl(var(--sidebar-primary))',
+  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+  				accent: 'hsl(var(--sidebar-accent))',
+  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+  				border: 'hsl(var(--sidebar-border))',
+  				ring: 'hsl(var(--sidebar-ring))'
+  			}
+  		},
+  		keyframes: {
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		backgroundImage: {
+  			doc: 'url(/assets/images/doc.png)',
+  			modal: 'url(/assets/images/modal.png)'
+  		},
+  		animation: {
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
+  		}
+  	}
   },
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require('tailwindcss-animate')],

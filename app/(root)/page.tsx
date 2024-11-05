@@ -4,16 +4,33 @@ import AddDocumentButton from "@/components/AddDocumentButton";
 import { SignedIn, UserButton } from "@clerk/nextjs"
 import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
-import { redirect } from "next/navigation";
 import { getDocuments } from "@/lib/action/room.action";
 import Link from "next/link";
 import { dateConverter } from "@/lib/utils";
 import DeleteModal from "@/components/DeleteModal";
 import Notification from "@/components/Notification";
+import Hero from "@/components/Hero";
+import { Button } from "@/components/ui/button";
 
 export default async function Home() {
   const cleakUser = await currentUser();
-  if (!cleakUser) redirect("/sign-in");
+
+  if (!cleakUser) {
+    return (
+      <main className="home-container">
+        <Header className="sticky left-0 top-0 px-8">
+          <Button
+            variant="secondary"
+          >
+            <Link href="/sign-in" className="font-bold">
+              Sign in
+            </Link>
+          </Button>
+        </Header>
+        <Hero />
+      </main>
+    )
+  }
 
   const roomDocuments = await getDocuments(cleakUser.emailAddresses[0].emailAddress);
 
